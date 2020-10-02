@@ -1,0 +1,23 @@
+Part I
+
+Answer the following questions.
+1. What are the relevant features of the Titanic dataset. Why are they relevant?
+The dataset have 12 features capturing information about the passangers
+
+2. Can you find a parameter configuration to get a validation score greater than 62% ?
+
+3. What are the advantages/disadvantages of K-Means clustering?
+
+    Advantages:
+        - Relativly simple to implement.
+        - Scales to large data sets.
+    Disadvantages:
+        - The biggest disadvantage is that K-Means requires you to pre-specify the number of clusters (k).
+        - Another  disadvantage of k-means is that it is sensitive to outliers and different results can occur 
+        if you change the ordering of the data.
+
+4. How can you address the weaknesses?
+
+Part II
+
+Part III
