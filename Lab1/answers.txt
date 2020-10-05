@@ -2,9 +2,15 @@ Part I
 
 Answer the following questions.
 1. What are the relevant features of the Titanic dataset. Why are they relevant?
-The dataset have 12 features capturing information about the passangers
+The dataset have 12 features capturing information about the passangers. 
+The data is relevant to finding out about the people who survived the titanic and 
+compare them to other data in the set.
+
 
 2. Can you find a parameter configuration to get a validation score greater than 62% ?
+
+    No, we can't find a better validation score than 62.6% when we're editing the 
+    parameters 'algorithm', 'max_iter' and 'n_jobs'.
 
 3. What are the advantages/disadvantages of K-Means clustering?
 
@@ -12,12 +18,59 @@ The dataset have 12 features capturing information about the passangers
         - Relativly simple to implement.
         - Scales to large data sets.
     Disadvantages:
-        - The biggest disadvantage is that K-Means requires you to pre-specify the number of clusters (k).
-        - Another  disadvantage of k-means is that it is sensitive to outliers and different results can occur 
+        - The biggest disadvantage is that K-Means requires you to pre-specify 
+        the number of clusters (k).
+        - Another  disadvantage of k-means is that it is sensitive to outliers 
+        and different results can occur 
         if you change the ordering of the data.
 
 4. How can you address the weaknesses?
+    
+    1. Since we need to pre-specify the number of clusters, a good idea might 
+    be to check out the data points to determine a sufficient amount of clusters.
+    
+    2. When using the training data, it might be good to either make sure that the 
+    outliers are not as severe that it ruins our cluster.
+
+
 
 Part II
 
+1. How many clusters do you have? Explain your answer.
+
+    There are 6 clusters. We have 7 colors in the dendogram plot. 
+    One color is for connecting the clusters, therefore there are 6 clusters.
+
+2. Plot the clusters to see how actually the data has been clustered.
+    
+    Done
+
+3. What can you conclude by looking at the plot?
+
+    The middle class seems to be consistent with their spending, all having a spending score of roughly 50.
+    The low income do have some high spenders and also low spenders, as same for the high income.
+
+
 Part III
+
+1.  Can you choose n_components=2? Can you think of some method to test this?
+    
+    Yes, you can. However the size of some vectors need to be changed. By meassuring the variance ratio 
+    of the principal components, we can see that those two components make up about 100% of the variance.
+
+
+2. Create the scatter plot of the third principal component (that is, you combine the third
+principal component with the first and then the second principal component). What can
+you see with the plot? What is the difference?
+
+    As we can see in the plot, the axes have been elongated, and some points are more extreme values. 
+    This makes it easier to make out certain points which are of more extreme values.
+
+
+3. Can you tell which feature contribute more towards the 1st PC?
+(question at page 8)
+    
+    It seems to be: 
+    - Mean concave points
+    - Mean convacity
+    - Worst concave points

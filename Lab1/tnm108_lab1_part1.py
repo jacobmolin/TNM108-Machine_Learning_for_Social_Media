@@ -111,16 +111,14 @@ y = np.array(train['Survived'])
 
 train.info()
 
-kmeans = KMeans(n_clusters=2) 
-# You want cluster the passenger records into 2: Survived or not survived.
+kmeans = kmeans = KMeans(n_clusters=2) # You want cluster the passenger records into 2: Survived or not survived.
 kmeans.fit(X)
 
-KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=300,
- n_clusters=2, n_init=10, n_jobs=1, precompute_distances='auto',
- random_state=None, tol=0.0001, verbose=0)
+# KMeans(algorithm='elkan', copy_x=True, init='k-means++', max_iter=30000, n_clusters=2, n_init=10,
+# n_jobs=100, precompute_distances='auto', random_state=None, tol=0.0001, verbose=0)
 
 
- # looking at the percentage of passenger records that were clustered correctly.
+# looking at the percentage of passenger records that were clustered correctly.
 correct = 0
 
 for i in range(len(X)):
@@ -131,14 +129,12 @@ for i in range(len(X)):
         correct += 1 
 
 
-print(correct/len(X))
-print('\n')
+print("\nValidation score: ", correct/len(X))
 
-kmeans = kmeans = KMeans(n_clusters=2, max_iter=600, algorithm='auto')
+kmeans = kmeans = KMeans(n_clusters=2, max_iter=6000, algorithm='elkan')
 kmeans.fit(X)
-KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=600,
-        n_clusters=2, n_init=10, n_jobs=1, precompute_distances='auto',
-        random_state=None, tol=0.0001, verbose=0)
+# KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=600, n_clusters=2, n_init=10, n_jobs=1, precompute_distances='auto', random_state=None, tol=0.0001, verbose=0)
+
 correct = 0
 for i in range(len(X)):
     predict_me = np.array(X[i].astype(float))
@@ -147,14 +143,17 @@ for i in range(len(X)):
     if prediction[0] == y[i]:
         correct += 1
 
-print(correct/len(X))
+print("Validation score: ", correct/len(X))
+
+# kmeans = kmeans = KMeans(n_jobs=2, max_iter=6000, algorithm='elkan')
+# kmeans.fit(X)
 
 scaler = MinMaxScaler()
 X_scaled = scaler.fit_transform(X)
 kmeans.fit(X_scaled)
-KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=600,
- n_clusters=2, n_init=10, n_jobs=1, precompute_distances='auto',
- random_state=None, tol=0.0001, verbose=0)
+# KMeans(algorithm='full', copy_x=True, init='k-means++', max_iter=600000,
+#  n_clusters=2, n_init=10, n_jobs=10000, precompute_distances='auto',
+#  random_state=None, tol=0.0001, verbose=0)
 correct = 0
 for i in range(len(X)):
     predict_me = np.array(X[i].astype(float))
@@ -163,6 +162,6 @@ for i in range(len(X)):
     if prediction[0] == y[i]:
         correct += 1
         
-print(correct/len(X))
+print("Edited validation score: ", correct/len(X))
 
 # 3. 
