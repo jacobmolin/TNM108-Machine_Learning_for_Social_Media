@@ -1,10 +1,67 @@
-Part I
+********************* Part I *********************
 
-1. 
+1. When can you use linear regression?
+
+    When you are trying to describe a linear relationship between 
+    two or more variables, where one is dependent on (all) the 
+    other variable(s).
+    
+    (Linear regression assumes that…
+    1. The relationship between X and Y is linear
+    2. Y is distributed normally at each value of X
+    3. The variance of Y at every value of X is the same
+    (homogeneity of variances)
+    4. The observations are independent)
 
 
-Part II
+2. How can you generalize linear regression models to account for more 
+   complex relationships among the data? 
+
+   By using multidimensional linear model of the form
+    y = a0 + a1x1 + a2x2 + ...
 
 
+3. What are the basis functions?
+    
+    Basis functions are functions which are built by the input x, which transforms the points.
+    The idea is to take the multidimensional linear model and build the components from our 
+    single-dimensional input x.
+    Basically it goes from y = a_0 + a_1*x_1 + a_2*x_2 to {x_n = f_n(x)} -> y = a_0 + a_1*f_1(x) + a_2*f_2(x)
+    
+    //Polynomial basis functions, gaussian basis functions, 
 
-Part II
+
+One trick you can use to adapt linear regression to nonlinear 
+relationships between variables is to transform the data according to basis functions.
+
+
+4. How many basis functions can you use in the same regression model?
+    
+    We can use how many we want, but doing so increases the risk of overfitting our model. 
+    This question is tricky. (Since x_n = f_n(x), where x contains all parameters(?) 
+    we could argue that we should not use more basis functions than the dimension size of x.)
+
+
+5. Can overfitting be a problem? And if so, what can you do about it?
+
+    Basis functions can be overfitted, which leads to the model having too much flexibility. 
+    This can be solved by penalizing large values of the model parameters.
+
+********************* Part II ********************
+
+1. Why choosing a good value for k is important in KNN?
+ The value K represents the number of nearest neighbors.
+2. How can you decide a good value for k?
+For selecting a good value for k, you can use the Elbow method.
+
+3. Can you use KNN to classify non-linearly separable data?
+4. Is KNN sensible to the number of features in the dataset?
+5. Can you use KNN for a regression problem?
+6. What are the Pros and Cons of KNN?
+
+******************** Part III ********************
+
+1. What is the basic idea/intuition of SVM?
+2. What can you do if the dataset is not lenearly separable?
+3. Explain the concept of Soften Margins
+4. What are the pros and cons of SVM?
