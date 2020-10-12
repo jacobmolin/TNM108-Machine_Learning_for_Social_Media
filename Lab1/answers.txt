@@ -2,9 +2,10 @@ Part I
 
 Answer the following questions.
 1. What are the relevant features of the Titanic dataset. Why are they relevant?
-The dataset have 12 features capturing information about the passangers. 
-The data is relevant to finding out about the people who survived the titanic and 
-compare them to other data in the set.
+
+    The dataset have 12 features capturing information about the passangers. 
+    The data is relevant to finding out about the people who survived the titanic and 
+    compare them to other data in the set.
 
 
 2. Can you find a parameter configuration to get a validation score greater than 62% ?
@@ -21,8 +22,7 @@ compare them to other data in the set.
         - The biggest disadvantage is that K-Means requires you to pre-specify 
         the number of clusters (k).
         - Another  disadvantage of k-means is that it is sensitive to outliers 
-        and different results can occur 
-        if you change the ordering of the data.
+        and different results can occur if you change the ordering of the data.
 
 4. How can you address the weaknesses?
     
@@ -56,14 +56,14 @@ Part III
 1.  Can you choose n_components=2? Can you think of some method to test this?
     
     Yes, you can. However the size of some vectors need to be changed. By meassuring the variance ratio 
-    of the principal components, we can see that those two components make up about 100% of the variance.
+    of the principal components, we can see that those two components make up about 100% of the variance. high variance = high importance
 
 
 2. Create the scatter plot of the third principal component (that is, you combine the third
 principal component with the first and then the second principal component). What can
 you see with the plot? What is the difference?
 
-    As we can see in the plot, the axes have been elongated, and some points are more extreme values. 
+    As we can see in the plot, the axes have been elongated, and some points have more extreme values. 
     This makes it easier to make out certain points which are of more extreme values.
 
 
