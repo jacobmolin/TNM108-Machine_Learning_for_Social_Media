@@ -3,8 +3,10 @@
 1. When can you use linear regression?
 
     When you are trying to describe a linear relationship between 
-    two or more variables, where one is dependent on (all) the 
-    other variable(s).
+    two or more variables, where one is dependent on all the 
+    other variable(s). 
+    
+    ---> Like independent can be weather and dependent bicycles
     
     (Linear regression assumes that…
     1. The relationship between X and Y is linear
@@ -17,51 +19,156 @@
 2. How can you generalize linear regression models to account for more 
    complex relationships among the data? 
 
-   By using multidimensional linear model of the form
-    y = a0 + a1x1 + a2x2 + ...
+   By using a basis function to project them into a higher dimension.
+   
+   
+   ((By using multidimensional linear model of the form
+    y = a0 + a1x1 + a2x2 + ...))
 
 
 3. What are the basis functions?
     
-    Basis functions are functions which are built by the input x, which transforms the points.
-    The idea is to take the multidimensional linear model and build the components from our 
-    single-dimensional input x.
-    Basically it goes from y = a_0 + a_1*x_1 + a_2*x_2 to {x_n = f_n(x)} -> y = a_0 + a_1*f_1(x) + a_2*f_2(x)
+    With the help of a basis function f(x) we can transform our one-dimensional 
+    x-values and projected them into a higher dimension, so that a linear fit,
+    with a more complex relationships between x and y, can be found.
     
-    //Polynomial basis functions, gaussian basis functions, 
-
-
-One trick you can use to adapt linear regression to nonlinear 
-relationships between variables is to transform the data according to basis functions.
+    Ex: y = a_0 + a_1*x_1 + a_2*x_2 ...
+        {x_n = f_n(x) = x^n} 
+        => y = a_0 + a_1*f_1(x) + a_2*f_2(x)
+        => y = a_0 + a_1*x + a_2*x^2 ...
+    
+    ( ---> Polynomial basis functions, gaussian basis functions )
 
 
 4. How many basis functions can you use in the same regression model?
     
-    We can use how many we want, but doing so increases the risk of overfitting our model. 
-    This question is tricky. (Since x_n = f_n(x), where x contains all parameters(?) 
-    we could argue that we should not use more basis functions than the dimension size of x.)
+    We can use how many we want, but using more than 
+    "needed" can lead to overfitting.
+
+    A rule of thumb could be to not use more basis 
+    functions than the dimension size of x?
+    i.e. not projecting onto a higher dimension than number of input variables.
+    ( if [x1, x2, x3, x4], don't project onto higher dimension than x^4??? )
 
 
 5. Can overfitting be a problem? And if so, what can you do about it?
 
-    Basis functions can be overfitted, which leads to the model having too much flexibility. 
+    Yes, which leads to the model having too much flexibility. 
     This can be solved by penalizing large values of the model parameters.
+
+
 
 ********************* Part II ********************
 
-1. Why choosing a good value for k is important in KNN?
- The value K represents the number of nearest neighbors.
+1. Why is choosing a good value for k important in KNN?
+
+    Because the value k represents the number of nearest neighbors 
+    that is used to classify an object. The value of k is therefore 
+    directly correlated with how good the predictions will be, as well as
+    how computationally demanding the classification algorithm will be.
+
+
 2. How can you decide a good value for k?
-For selecting a good value for k, you can use the Elbow method.
+
+    For low value of k the noise will have a 
+    higher influence on the result. Low k's will also
+    produce a more flexible fit, which gives low bias, but high variance.
+   
+    High value of k produces smoother decision boundries with 
+    higher bias and lower variance.
+
+    Genereally an odd number of k should be chosen if 
+    the number of classes is even.
+
+    The elbow method can also be used.
+
 
 3. Can you use KNN to classify non-linearly separable data?
+
+    Yes. Kernel trick!
+
+
 4. Is KNN sensible to the number of features in the dataset?
-5. Can you use KNN for a regression problem?
+
+    Yes. KNN performs better with a lower number of features
+    rather than a larger number of features. The increase
+    in feature dimensions may lead to overfitting.
+
+
+5. Can you use KNN for a regression (continous) problem?
+
+    Yes, KNN can be used for regression (continous) problems.
+
+
 6. What are the Pros and Cons of KNN?
+
+    Pros:
+        - Training phase is much faster compared to other
+          classification algorithms.
+        - No need to train a model for generalization at all.
+        - Predicted value of new data point is calculated by
+          taken the average of the k closest neighbors's values. 
+
+    Cons:
+        - Testing phase is slower and more memory demanding.
+        - Requires large memory for storing entire Training data set.
+        - Requires rescaling of the data set (especially if Euclidean
+          distance measure is used).
+        - Not suitable for large dimensional data sets.
+
+
 
 ******************** Part III ********************
 
-1. What is the basic idea/intuition of SVM?
-2. What can you do if the dataset is not lenearly separable?
+1. What is the basic idea/intuition of SVM (Support Sector Machines)?
+
+    You calculate multiple (all?) separators (lines) and add
+    margins on both sides of the separators. The width of the
+    marigns are up to the nearest point (same width on both sides).
+    The spearator that maximizes their margin the most is
+    chosen as the optimal model.
+
+
+2. What can you do if the dataset is not linearly separable?
+
+    Project the data into a higher dimension such that a
+    linear seperator would be sufficient to separate the classes.
+
+
 3. Explain the concept of Soften Margins
+
+    This technique is useful when the data set has some
+    amount of overlap. Some points are allowed to creep into
+    the margins if it yields a better fit.
+    
+    You can "soften" the margins of the separator by changing a
+    variable C. A high value of C yields hard margins.
+
+
 4. What are the pros and cons of SVM?
+
+    Pros:
+        - Very compact models that take up very little memory
+          because of their relatively low dependence on few
+          support vectors.
+        - Fast prediction phase, once model is trained.
+        - Only affected by points near margin, therefore they
+          work very well with high-dimensional data; even data
+          with more dimensions than samples (a challenge
+          for other algorithms).
+        - Their integration with kernel methods makes them 
+          very versatile, able to adapt to many kinds of data.
+        
+    Cons:
+        - Scaling is at worst O(n^3), O(n^2) for efficient 
+          implementations. (n = number of samples). 
+          => Computational cost can be hindering for large number 
+          of training samples.
+        - The results are STRONGLY dependent on a suitable 
+          choice of softening parameter C. Must be carefully
+          chosen via cross-validation, which can be expensive
+          with larger data sets.
+        - (( The results do not have a direct probabilistic 
+          interpretation. Although this can be estimated via 
+          an internal cross-validation (see the probability 
+          parameter of SVC), but this extra estimation is costly. ))
