@@ -24,6 +24,9 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import RidgeCV
 
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+
 # Load the faces datasets
 data, targets = fetch_olivetti_faces(return_X_y=True)
 
@@ -49,9 +52,18 @@ ESTIMATORS = {
     "Extra trees": ExtraTreesRegressor(n_estimators=10, max_features=32,
                                        random_state=0),
     "K-nn": KNeighborsRegressor(),
-    "Linear regression": LinearRegression(),
+    "LinReg": LinearRegression(),
     "Ridge": RidgeCV(),
+    "RDT(10 50)": DecisionTreeRegressor(max_depth=10, max_features=50),
+    "RDT(20 50)": DecisionTreeRegressor(max_depth=20, max_features=50),
+    "RDT(20 25)": DecisionTreeRegressor(max_depth=20, max_features=25),
+    # "RFR(10 50)": RandomForestRegressor(n_estimators=20, max_depth=10, max_features=50), #better to have more estimaters 
+    # "RFR(20 50)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=50),
+    # "RFR(20 25)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=25)
 }
+# feature how big the tree is
+# depth how long 
+# depth matters for quality
 
 y_test_predict = dict()
 for name, estimator in ESTIMATORS.items():

@@ -33,8 +33,17 @@ algorithms to the final plot:
 (f) Random forest with max depth of 20 and max number of features 25
 How do you interpret the results?
 
-4. How could performance of random forest be improved?
+RDT:
+depth gives...
+More features gives...
 
+RGR: 
+depth gives...
+More features gives...
+More estimators gives better result because more trees are used to calculate the average.
+
+4. How could performance of random forest be improved?
+To use more estimators, more trees to calculate a more accurate mean
 ***********************************************************
 
 Part 3:

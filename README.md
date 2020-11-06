@@ -6,3 +6,6 @@ All implemented in Python.
 #### 1. Unsupervised learning. K-Means- and Hierarchical Clustering + Principal Component Analysis.
 
 #### 2. Supervised learning. Linear regression, KNN (K-Nearest Neighbor) and SVM (Support Vector Machines).
+
+#### 3. Supervised learning and Validation. Gaussian Naive Bayes, Decision Trees, and Random Forests.
+
