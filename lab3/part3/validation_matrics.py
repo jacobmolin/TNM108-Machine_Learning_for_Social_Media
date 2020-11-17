@@ -13,15 +13,25 @@ from sklearn.metrics import mean_squared_error
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import ShuffleSplit
+from sklearn.feature_selection import RFE
+from sklearn.model_selection import KFold
+
+
 
 boston = load_boston()
-X=boston.data
-Y=boston.target
+X = boston.data
+Y = boston.target
+cv = KFold(n_splits=10, shuffle=True)
+cv2 = ShuffleSplit(n_splits=10)
+
+# np.random.shuffle(X)
 # cv = 10
-cv = ShuffleSplit(n_splits=10, test_size=0.3, random_state=0)
+# ShuffleSplit(n_splits=10, test_size=0.3, random_state=0)
 # X_train, X_test, Y_train, Y_test = train_test_split(
 #     X, Y, test_size=0.4, random_state=0)
 
+
+#R2=1 is a good fit and R2=0 is a model with constant line --> bad fit
 print('\nlinear regression')
 lin = LinearRegression()
 scores = cross_val_score(lin, X, Y, cv=cv)
@@ -77,3 +87,71 @@ scores = cross_val_score(knn, X, Y, cv=cv)
 print("mean R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
 predicted = cross_val_predict(knn, X,Y, cv=cv)
 print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+
+
+RFE
+print('\n RFE: \n')
+
+best_features=4
+rfe_lin = RFE(lin,best_features).fit(X,Y)
+supported_features=rfe_lin.get_support(indices=True)
+
+for i in range(0, 4):
+    z=supported_features[i]
+    print(i+1,boston.feature_names[z])
+
+
+best_features=4
+print('feature selection on linear regression')
+rfe_lin = RFE(lin,best_features).fit(X,Y)
+mask = np.array(rfe_lin.support_)
+scores = cross_val_score(lin, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(lin, X[:,mask],Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+print('feature selection ridge regression')
+rfe_ridge = RFE(ridge,best_features).fit(X,Y)
+mask = np.array(rfe_ridge.support_)
+scores = cross_val_score(ridge, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(ridge, X[:,mask],Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+print('feature selection on lasso regression')
+rfe_lasso = RFE(lasso,best_features).fit(X,Y)
+mask = np.array(rfe_lasso.support_)
+scores = cross_val_score(lasso, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(lasso, X[:,mask],Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+print('feature selection on decision tree')
+rfe_tree = RFE(tree,best_features).fit(X,Y)
+mask = np.array(rfe_tree.support_)
+scores = cross_val_score(tree, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(tree, X[:,mask],Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+print('feature selection on random forest')
+rfe_forest = RFE(forest,best_features).fit(X,Y)
+mask = np.array(rfe_forest.support_)
+scores = cross_val_score(forest, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(forest, X[:,mask],Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+print('feature selection on linear support vector machine')
+rfe_svm = RFE(svm_lin,best_features).fit(X,Y)
+mask = np.array(rfe_svm.support_)
+scores = cross_val_score(svm_lin, X[:,mask], Y, cv=cv)
+print("R2: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+predicted = cross_val_predict(svm_lin, X,Y, cv=cv)
+print("MSE: %0.2f" % mean_squared_error(Y,predicted))
+
+
+
+
+

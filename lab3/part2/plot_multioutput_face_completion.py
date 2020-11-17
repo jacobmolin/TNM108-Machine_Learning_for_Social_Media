@@ -57,9 +57,9 @@ ESTIMATORS = {
     "RDT(10 50)": DecisionTreeRegressor(max_depth=10, max_features=50),
     "RDT(20 50)": DecisionTreeRegressor(max_depth=20, max_features=50),
     "RDT(20 25)": DecisionTreeRegressor(max_depth=20, max_features=25),
-    # "RFR(10 50)": RandomForestRegressor(n_estimators=20, max_depth=10, max_features=50), #better to have more estimaters 
-    # "RFR(20 50)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=50),
-    # "RFR(20 25)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=25)
+    "RFR(10 50)": RandomForestRegressor(n_estimators=20, max_depth=10, max_features=50), #better to have more estimaters 
+    "RFR(20 50)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=50),
+    "RFR(20 25)": RandomForestRegressor(n_estimators=20, max_depth=20, max_features=25)
 }
 # feature how big the tree is
 # depth how long 
