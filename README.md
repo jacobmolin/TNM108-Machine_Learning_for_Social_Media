@@ -9,3 +9,4 @@ All implemented in Python.
 
 #### 3. Supervised learning and Validation. Gaussian Naive Bayes, Decision Trees, and Random Forests.
 
+#### 4. Natural Language Processing (NLP).
